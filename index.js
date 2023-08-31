@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -10,6 +11,8 @@ app.use(bodyParser.json());
 
 const mongoURL = process.env.MONGODB_URL;
 const dbName = process.env.DB_NAME;
+
+app.use(cors());
 
 app.post("/signup", async (req, res) => {
   const { firstName, lastName, email } = req.body;
